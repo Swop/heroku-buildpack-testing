@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+export SF_ENV="prod"
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+BIN_DIR=$(dirname $0)
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+
+echo "-----> Slug compilation start"
+
+# fail fast
+set -e
+set -o pipefail
+
+mkdir -p $BUILD_DIR $CACHE_DIR
+
+cd $BUILD_DIR
+
+echo "-----> Move application files into 'www' folder"
+mkdir -p $CACHE_DIR/www
+mv * $CACHE_DIR/www
+mv $CACHE_DIR/www .
+
