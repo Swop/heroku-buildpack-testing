@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export SF_ENV="prod"
+#export SF_ENV="prod"
 
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -22,3 +22,9 @@ mkdir -p $CACHE_DIR/www
 mv * $CACHE_DIR/www
 mv $CACHE_DIR/www .
 
+if [ -n "$SF_ENV" ]; then
+  echo "Sf env found: $SF_ENV"
+else
+  echo "Sf env not found!"
+  exit 1
+fi
